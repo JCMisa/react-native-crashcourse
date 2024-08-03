@@ -1,15 +1,35 @@
-import { Link, Slot } from "expo-router";
+import { Redirect, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { images } from "../constants"
+import CustomButton from "@/components/custom/CustomButton";
 
 export default function Index() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-2xl font-black">Aora</Text>
-      <StatusBar />
-      <Link href={"/home"} style={{ color: "blue" }}>
-        Go to home
-      </Link>
-    </View>
+    <SafeAreaView className="bg-primary h-full">
+      <ScrollView contentContainerStyle={{ height: '100%' }}>
+        <View className="w-full justify-center items-center min-h-[85vh] p-4">
+          <Image source={images.logo} className="w-[130px] h-[84px]" resizeMode="contain" />
+          <Image source={images.cards} className="max-w-[380px] w-full h-[300px]" resizeMode="contain" />
+
+          <View className="relative mt-5">
+            <Text className="text-3xl text-white font-bold text-center">
+              Discover Endless Pissibilities with {' '} <Text className="text-secondary-200">Aora</Text>
+            </Text>
+            <Image source={images.path} className="w-[136px] h-[15px] absolute -bottom-1 right-20" resizeMode="contain" />
+          </View>
+
+          <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">Where creativity meets innovation:
+            embark on a journey of limitless exploration with Aora
+          </Text>
+
+          <CustomButton title="Continue with Email" handlePress={() => router.push('/sign-in')} containerStyles="w-full mt-7" textStyles="" />
+        </View>
+      </ScrollView>
+
+      {/* this will let user to see the phone status like battery, time, etc. */}
+      <StatusBar backgroundColor="#161622" style="light" />
+    </SafeAreaView>
   );
 }

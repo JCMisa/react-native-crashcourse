@@ -25,7 +25,15 @@ const TabIcon = ({ icon, color, name, focused }) => {
 const TabsLayout = () => {
   return (
     <Tabs screenOptions={{
-      tabBarShowLabel: false
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: "#FFA001",
+      tabBarInactiveTintColor: "#CDCDE0",
+      tabBarStyle: {
+        backgroundColor: "#161622",
+        borderTopWidth: 1,
+        borderTopColor: "#232533",
+        height: 84
+      }
     }}>
       <Tabs.Screen name="home" options={{ // means that the rendered screen is the component named home.jsx
         title: "Home", // set the title to home
