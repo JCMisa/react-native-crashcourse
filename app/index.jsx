@@ -1,4 +1,4 @@
-import { Redirect, router } from "expo-router";
+import { Link, Redirect, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -25,6 +25,7 @@ export default function Index() {
           </Text>
 
           <CustomButton title="Continue with Email" handlePress={() => router.push('/sign-in')} containerStyles="w-full mt-7" textStyles="" />
+          <Link href={'/home'} className="text-sm text-white mt-3">Get Started</Link>
         </View>
       </ScrollView>
 
