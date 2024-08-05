@@ -19,7 +19,7 @@ export default function Index() {
 
           <View className="relative mt-5">
             <Text className="text-3xl text-white font-bold text-center">
-              Discover Endless Pissibilities with {' '} <Text className="text-secondary-200">Aora</Text>
+              Discover Endless Possibilities with {' '} <Text className="text-secondary-200">Aora</Text>
             </Text>
             <Image source={images.path} className="w-[136px] h-[15px] absolute -bottom-1 right-20" resizeMode="contain" />
           </View>
