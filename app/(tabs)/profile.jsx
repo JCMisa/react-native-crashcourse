@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import VideoCard from "@/components/custom/VideoCard";
 import SearchInput from "@/components/custom/SearchInput";
 import EmptyState from "@/components/custom/EmptyState";
 import useAppwrite from "@/lib/useAppwrite";
-import { getCurrentUser, getUserPosts, searchPosts } from "@/lib/appwrite";
+import { getCurrentUser, getUserPosts, searchPosts, signOut } from "@/lib/appwrite";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { icons } from "@/constants";
 import InfoBox from "@/components/custom/InfoBox";
@@ -15,7 +15,13 @@ const Profile = () => {
   const { user, setUser, setIsLogged } = useGlobalContext();
   const { data: posts, refetch } = useAppwrite(() => getUserPosts(user.$id));
 
-  const logout = () => { }
+  const logout = async () => {
+    await signOut();
+    setUser(null)
+    setIsLogged(false)
+
+    router.replace('/sign-in')
+  }
 
   return (
     <SafeAreaView className="bg-primary h-full">
