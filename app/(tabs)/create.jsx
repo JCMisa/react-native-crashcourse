@@ -9,6 +9,7 @@ import * as ImagePicker from 'expo-image-picker'
 import { createVideoPost } from "@/lib/appwrite";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const Create = () => {
   const { user } = useGlobalContext();
@@ -147,6 +148,8 @@ const Create = () => {
           isLoading={uploading}
         />
       </ScrollView>
+
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 };

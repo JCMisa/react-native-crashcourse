@@ -1,10 +1,38 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { icons } from '@/constants'
 import { ResizeMode, Video } from 'expo-av'
+import { router } from 'expo-router'
+import { addToFavorite, getFavoriteVideoId, removeToFavorite } from '@/lib/appwrite'
+import useAppwrite from '@/lib/useAppwrite'
 
-const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avatar } } }) => {
+const VideoCard = ({ video: { title, thumbnail, video, creator: { $id, username, avatar } } }) => {
+    const { data: favoriteId } = useAppwrite(getFavoriteVideoId);
+    // console.log("video card: ", favoriteId[0].$id);
+
+
     const [play, setPlay] = useState(false)
+    const [favorite, setFavorite] = useState(false)
+
+    const addToFavoriteHandle = async () => {
+        setFavorite(true)
+        const result = await addToFavorite($id, true)
+        if (result) {
+            Alert.alert("Success", "Added to bookmark");
+            console.log(result);
+            router.push("/bookmark");
+        }
+    }
+
+    const removeToFavorites = async () => {
+        setFavorite(false)
+        const result = await removeToFavorite(favoriteId[0].$id)
+        if (result) {
+            Alert.alert("Success", "Removed Successfully");
+            console.log(result);
+            router.push("/home");
+        }
+    }
 
     return (
         <View className='flex-col items-center px-4 mb-14'>
@@ -23,8 +51,13 @@ const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avat
                     </View>
                 </View>
 
-                <View className='pt-2'>
-                    <Image source={icons.menu} className='w-5 h-5' resizeMode='contain' />
+                <View className='pt-2 flex flex-row gap-2'>
+                    <TouchableOpacity className='-ml-8' onPress={removeToFavorites}>
+                        <Image source={icons.heartWhite} width={8} height={8} className='w-8 h-8' resizeMode='contain' />
+                    </TouchableOpacity>
+                    <TouchableOpacity className='-ml-8' onPress={addToFavoriteHandle}>
+                        <Image source={icons.heartRed} width={8} height={8} className='w-8 h-8' resizeMode='contain' />
+                    </TouchableOpacity>
                 </View>
             </View>
 

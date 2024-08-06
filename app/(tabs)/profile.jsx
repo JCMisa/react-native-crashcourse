@@ -10,6 +10,7 @@ import { getCurrentUser, getUserPosts, searchPosts, signOut } from "@/lib/appwri
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { icons } from "@/constants";
 import InfoBox from "@/components/custom/InfoBox";
+import { StatusBar } from "expo-status-bar";
 
 const Profile = () => {
   const { user, setUser, setIsLogged } = useGlobalContext();
@@ -72,6 +73,8 @@ const Profile = () => {
           />
         )}
       />
+
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 };

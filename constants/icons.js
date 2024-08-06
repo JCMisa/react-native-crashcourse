@@ -12,6 +12,8 @@ import eyeHide from "../assets/icons/eye-hide.png";
 import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
 import loader from "../assets/icons/loader.webp";
+import heartRed from "../assets/icons/heart-red.png";
+import heartWhite from "../assets/icons/heart-white.webp";
 
 export default {
   play,
@@ -27,5 +29,7 @@ export default {
   eyeHide,
   eye,
   loader,
-  upload
+  upload,
+  heartRed,
+  heartWhite,
 };

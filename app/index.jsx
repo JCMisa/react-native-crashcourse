@@ -29,7 +29,6 @@ export default function Index() {
           </Text>
 
           <CustomButton title="Continue with Email" handlePress={() => router.push('/sign-in')} containerStyles="w-full mt-7" textStyles="" />
-          <Link href={'/home'} className="text-sm text-white mt-3">Get Started</Link>
         </View>
       </ScrollView>
 
